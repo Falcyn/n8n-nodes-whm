@@ -51,15 +51,15 @@ export const productFields: INodeProperties[] = [
 		displayOptions: show(['getServices']),
 		options: [
 			{ displayName: 'Client ID', name: 'clientid', type: 'number', default: 0 },
-			{ displayName: 'Service ID', name: 'serviceid', type: 'number', default: 0 },
-			{ displayName: 'Product ID', name: 'pid', type: 'number', default: 0 },
 			{ displayName: 'Domain', name: 'domain', type: 'string', default: '' },
 			{ displayName: 'Limit', name: 'limitnum', type: 'number', default: 25 },
+			{ displayName: 'Product ID', name: 'pid', type: 'number', default: 0 },
+			{ displayName: 'Service ID', name: 'serviceid', type: 'number', default: 0 },
 		],
 	},
 
 	// ---- Service-targeted operations ----
-	{ displayName: 'Service ID', name: 'serviceid', type: 'number', default: 0, required: true, description: 'ID of the client service (tblhosting.id)', displayOptions: show(['suspend', 'unsuspend', 'terminate', 'update', 'upgrade']) },
+	{ displayName: 'Service ID', name: 'serviceid', type: 'number', default: 0, required: true, description: 'ID of the client service (tblhosting.ID)', displayOptions: show(['suspend', 'unsuspend', 'terminate', 'update', 'upgrade']) },
 	{ displayName: 'Suspension Reason', name: 'suspendreason', type: 'string', default: '', displayOptions: show(['suspend']) },
 
 	// ---- Update Service ----
@@ -71,14 +71,14 @@ export const productFields: INodeProperties[] = [
 		default: {},
 		displayOptions: show(['update']),
 		options: [
+			{ displayName: 'Auto Recalc', name: 'autorecalc', type: 'boolean', default: false, description: 'Whether to recalculate the recurring amount from the product config' },
+			{ displayName: 'Billing Cycle', name: 'billingcycle', type: 'string', default: '' },
+			{ displayName: 'Dedicated IP', name: 'dedicatedip', type: 'string', default: '' },
+			{ displayName: 'Next Due Date', name: 'nextduedate', type: 'string', default: '', description: 'YYYY-MM-DD' },
+			{ displayName: 'Recurring Amount', name: 'recurringamount', type: 'number', default: 0 },
 			{ displayName: 'Status', name: 'status', type: 'options', default: 'Active', options: [
 				{ name: 'Active', value: 'Active' }, { name: 'Cancelled', value: 'Cancelled' }, { name: 'Fraud', value: 'Fraud' }, { name: 'Pending', value: 'Pending' }, { name: 'Suspended', value: 'Suspended' }, { name: 'Terminated', value: 'Terminated' },
 			] },
-			{ displayName: 'Next Due Date', name: 'nextduedate', type: 'string', default: '', description: 'YYYY-MM-DD' },
-			{ displayName: 'Recurring Amount', name: 'recurringamount', type: 'number', default: 0 },
-			{ displayName: 'Billing Cycle', name: 'billingcycle', type: 'string', default: '' },
-			{ displayName: 'Dedicated IP', name: 'dedicatedip', type: 'string', default: '' },
-			{ displayName: 'Auto Recalc', name: 'autorecalc', type: 'boolean', default: false, description: 'Recalculate the recurring amount from the product config' },
 		],
 	},
 
@@ -91,13 +91,13 @@ export const productFields: INodeProperties[] = [
 		default: {},
 		displayOptions: show(['upgrade']),
 		options: [
+			{ displayName: 'New Billing Cycle', name: 'newproductbillingcycle', type: 'string', default: '' },
+			{ displayName: 'New Product ID', name: 'newproductid', type: 'number', default: 0 },
+			{ displayName: 'Payment Method', name: 'paymentmethod', type: 'string', default: '' },
+			{ displayName: 'Promo Code', name: 'promocode', type: 'string', default: '' },
 			{ displayName: 'Type', name: 'type', type: 'options', default: 'product', options: [
 				{ name: 'Product', value: 'product' }, { name: 'Configurable Options', value: 'configoptions' },
 			] },
-			{ displayName: 'New Product ID', name: 'newproductid', type: 'number', default: 0 },
-			{ displayName: 'New Billing Cycle', name: 'newproductbillingcycle', type: 'string', default: '' },
-			{ displayName: 'Payment Method', name: 'paymentmethod', type: 'string', default: '' },
-			{ displayName: 'Promo Code', name: 'promocode', type: 'string', default: '' },
 		],
 	},
 

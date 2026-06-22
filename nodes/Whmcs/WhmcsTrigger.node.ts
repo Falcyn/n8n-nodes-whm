@@ -6,7 +6,6 @@ import type {
 	IWebhookFunctions,
 	IWebhookResponseData,
 } from 'n8n-workflow';
-import { NodeConnectionType } from 'n8n-workflow';
 
 /**
  * WHMCS Trigger.
@@ -31,7 +30,7 @@ export class WhmcsTrigger implements INodeType {
 		description: 'Starts a workflow when WHMCS fires a hook event (via the PHP hook bridge)',
 		defaults: { name: 'WHMCS Trigger' },
 		inputs: [],
-		outputs: [NodeConnectionType.Main],
+		outputs: ['main'],
 		webhooks: [
 			{
 				name: 'default',
@@ -57,6 +56,7 @@ export class WhmcsTrigger implements INodeType {
 					{ name: 'After Module Create', value: 'AfterModuleCreate' },
 					{ name: 'After Module Suspend', value: 'AfterModuleSuspend' },
 					{ name: 'After Module Terminate', value: 'AfterModuleTerminate' },
+					{ name: 'Any Event', value: '*' },
 					{ name: 'Client Add', value: 'ClientAdd' },
 					{ name: 'Client Close', value: 'ClientClose' },
 					{ name: 'Invoice Created', value: 'InvoiceCreated' },
@@ -65,7 +65,6 @@ export class WhmcsTrigger implements INodeType {
 					{ name: 'Order Pending', value: 'OrderPaid' },
 					{ name: 'Ticket Open', value: 'TicketOpen' },
 					{ name: 'Ticket Reply', value: 'TicketUserReply' },
-					{ name: 'Any Event', value: '*' },
 				],
 				default: ['*'],
 			},

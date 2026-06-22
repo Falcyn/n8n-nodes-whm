@@ -36,16 +36,16 @@ export const invoiceFields: INodeProperties[] = [
 		default: {},
 		displayOptions: show(['create']),
 		options: [
+			{ displayName: 'Date', name: 'date', type: 'string', default: '', description: 'YYYY-MM-DD' },
+			{ displayName: 'Due Date', name: 'duedate', type: 'string', default: '', description: 'YYYY-MM-DD' },
+			{ displayName: 'Line Item 1 Amount', name: 'itemamount1', type: 'number', default: 0 },
+			{ displayName: 'Line Item 1 Description', name: 'itemdescription1', type: 'string', default: '' },
+			{ displayName: 'Line Item 1 Taxed', name: 'itemtaxed1', type: 'boolean', default: false },
+			{ displayName: 'Payment Method', name: 'paymentmethod', type: 'string', default: '' },
+			{ displayName: 'Send Invoice Email', name: 'sendinvoice', type: 'boolean', default: false },
 			{ displayName: 'Status', name: 'status', type: 'options', default: 'Unpaid', options: [
 				{ name: 'Draft', value: 'Draft' }, { name: 'Unpaid', value: 'Unpaid' }, { name: 'Paid', value: 'Paid' },
 			] },
-			{ displayName: 'Send Invoice Email', name: 'sendinvoice', type: 'boolean', default: false },
-			{ displayName: 'Payment Method', name: 'paymentmethod', type: 'string', default: '' },
-			{ displayName: 'Date', name: 'date', type: 'string', default: '', description: 'YYYY-MM-DD' },
-			{ displayName: 'Due Date', name: 'duedate', type: 'string', default: '', description: 'YYYY-MM-DD' },
-			{ displayName: 'Line Item 1 Description', name: 'itemdescription1', type: 'string', default: '' },
-			{ displayName: 'Line Item 1 Amount', name: 'itemamount1', type: 'number', default: 0 },
-			{ displayName: 'Line Item 1 Taxed', name: 'itemtaxed1', type: 'boolean', default: false },
 		],
 	},
 
@@ -62,11 +62,11 @@ export const invoiceFields: INodeProperties[] = [
 		default: {},
 		displayOptions: show(['addPayment']),
 		options: [
-			{ displayName: 'Gateway', name: 'gateway', type: 'string', default: '', description: 'Gateway module name' },
 			{ displayName: 'Amount', name: 'amount', type: 'number', default: 0, description: 'Leave blank to settle the full balance' },
-			{ displayName: 'Fees', name: 'fees', type: 'number', default: 0 },
 			{ displayName: 'Date', name: 'date', type: 'string', default: '', description: 'YYYY-MM-DD HH:MM:SS' },
-			{ displayName: 'Send Email', name: 'noemail', type: 'boolean', default: false, description: 'When true, suppresses the payment confirmation email' },
+			{ displayName: 'Fees', name: 'fees', type: 'number', default: 0 },
+			{ displayName: 'Gateway', name: 'gateway', type: 'string', default: '', description: 'Gateway module name' },
+			{ displayName: 'Send Email', name: 'noemail', type: 'boolean', default: false, description: 'Whether to suppress the payment confirmation email when true' },
 		],
 	},
 

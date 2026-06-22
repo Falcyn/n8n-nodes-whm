@@ -36,12 +36,12 @@ export const systemFields: INodeProperties[] = [
 		displayOptions: show(['sendEmail']),
 		options: [
 			{ displayName: 'Client ID', name: 'id', type: 'number', default: 0, description: 'Recipient client ID (used with template emails)' },
+			{ displayName: 'Custom Message', name: 'custommessage', type: 'string', typeOptions: { rows: 4 }, default: '' },
+			{ displayName: 'Custom Subject', name: 'customsubject', type: 'string', default: '', description: 'Subject for a custom (non-template) email' },
 			{ displayName: 'Custom Type', name: 'customtype', type: 'options', default: 'product', options: [
 				{ name: 'General', value: 'general' }, { name: 'Product', value: 'product' }, { name: 'Domain', value: 'domain' }, { name: 'Invoice', value: 'invoice' },
 			] },
-			{ displayName: 'Custom Subject', name: 'customsubject', type: 'string', default: '', description: 'Subject for a custom (non-template) email' },
-			{ displayName: 'Custom Message', name: 'custommessage', type: 'string', typeOptions: { rows: 4 }, default: '' },
-			{ displayName: 'Related ID', name: 'customvars', type: 'string', default: '', description: 'base64-encoded serialized merge variables (advanced)' },
+			{ displayName: 'Related ID', name: 'customvars', type: 'string', default: '', description: 'Base64-encoded serialized merge variables (advanced)' },
 		],
 	},
 

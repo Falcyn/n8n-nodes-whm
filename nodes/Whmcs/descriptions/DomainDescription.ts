@@ -34,7 +34,7 @@ export const domainFields: INodeProperties[] = [
 		type: 'number',
 		default: 0,
 		required: true,
-		description: 'ID of the client domain record (tbldomains.id)',
+		description: 'ID of the client domain record (tbldomains.ID)',
 		displayOptions: show(['register', 'renew', 'transfer', 'getNameservers', 'updateNameservers', 'toggleIdProtect', 'update']),
 	},
 
@@ -86,12 +86,12 @@ export const domainFields: INodeProperties[] = [
 		default: {},
 		displayOptions: show(['update']),
 		options: [
-			{ displayName: 'Status', name: 'status', type: 'string', default: '', description: 'e.g. Active, Pending, Expired, Cancelled' },
-			{ displayName: 'Next Due Date', name: 'nextduedate', type: 'string', default: '', description: 'YYYY-MM-DD' },
+			{ displayName: 'Do Not Renew', name: 'donotrenew', type: 'boolean', default: false },
 			{ displayName: 'Expiry Date', name: 'expirydate', type: 'string', default: '', description: 'YYYY-MM-DD' },
+			{ displayName: 'Next Due Date', name: 'nextduedate', type: 'string', default: '', description: 'YYYY-MM-DD' },
 			{ displayName: 'Recurring Amount', name: 'recurringamount', type: 'number', default: 0 },
 			{ displayName: 'Registrar', name: 'registrar', type: 'string', default: '' },
-			{ displayName: 'Do Not Renew', name: 'donotrenew', type: 'boolean', default: false },
+			{ displayName: 'Status', name: 'status', type: 'string', default: '', description: 'E.g. Active, Pending, Expired, Cancelled.' },
 		],
 	},
 

@@ -39,8 +39,8 @@ export const ticketFields: INodeProperties[] = [
 		displayOptions: show(['create']),
 		options: [
 			{ displayName: 'Client ID', name: 'clientid', type: 'number', default: 0, description: 'Open against an existing client' },
-			{ displayName: 'Name', name: 'name', type: 'string', default: '', description: 'Required for non-client (guest) tickets' },
 			{ displayName: 'Email', name: 'email', type: 'string', placeholder: 'name@email.com', default: '' },
+			{ displayName: 'Name', name: 'name', type: 'string', default: '', description: 'Required for non-client (guest) tickets' },
 			{ displayName: 'Priority', name: 'priority', type: 'options', default: 'Medium', options: [
 				{ name: 'Low', value: 'Low' }, { name: 'Medium', value: 'Medium' }, { name: 'High', value: 'High' },
 			] },
@@ -78,13 +78,13 @@ export const ticketFields: INodeProperties[] = [
 		default: {},
 		displayOptions: show(['update']),
 		options: [
-			{ displayName: 'Subject', name: 'subject', type: 'string', default: '' },
+			{ displayName: 'Department ID', name: 'deptid', type: 'number', default: 0 },
+			{ displayName: 'Flag To Admin ID', name: 'flag', type: 'number', default: 0 },
 			{ displayName: 'Priority', name: 'priority', type: 'options', default: 'Medium', options: [
 				{ name: 'Low', value: 'Low' }, { name: 'Medium', value: 'Medium' }, { name: 'High', value: 'High' },
 			] },
-			{ displayName: 'Status', name: 'status', type: 'string', default: '', description: 'e.g. Open, Answered, Closed' },
-			{ displayName: 'Department ID', name: 'deptid', type: 'number', default: 0 },
-			{ displayName: 'Flag To Admin ID', name: 'flag', type: 'number', default: 0 },
+			{ displayName: 'Status', name: 'status', type: 'string', default: '', description: 'E.g. Open, Answered, Closed.' },
+			{ displayName: 'Subject', name: 'subject', type: 'string', default: '' },
 		],
 	},
 
@@ -100,7 +100,7 @@ export const ticketFields: INodeProperties[] = [
 		options: [
 			{ displayName: 'Department ID', name: 'deptid', type: 'number', default: 0 },
 			{ displayName: 'Client ID', name: 'clientid', type: 'number', default: 0 },
-			{ displayName: 'Status', name: 'status', type: 'string', default: '', description: 'e.g. Open, Answered, Closed' },
+			{ displayName: 'Status', name: 'status', type: 'string', default: '', description: 'E.g. Open, Answered, Closed.' },
 			{ displayName: 'Subject Filter', name: 'subject', type: 'string', default: '' },
 		],
 	},

@@ -5,6 +5,7 @@ import type {
 	ILoadOptionsFunctions,
 	IHttpRequestOptions,
 	IHttpRequestMethods,
+	JsonObject,
 } from 'n8n-workflow';
 import { NodeApiError, NodeOperationError } from 'n8n-workflow';
 
@@ -124,6 +125,3 @@ export function maybeJsonToObject(
 		);
 	}
 }
-
-// Minimal local alias so we don't depend on the JsonObject export path.
-type JsonObject = { [key: string]: unknown };

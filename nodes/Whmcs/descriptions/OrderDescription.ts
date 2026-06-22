@@ -38,10 +38,10 @@ export const orderFields: INodeProperties[] = [
 		displayOptions: show(['create']),
 		description: 'At least one product, domain, or addon must be supplied. Use array-style WHMCS keys.',
 		options: [
-			{ displayName: 'Product ID (Pid)', name: 'pid', type: 'string', default: '', description: 'Product ID. For multiple, comma-separate, e.g. "1,2".' },
-			{ displayName: 'Billing Cycle', name: 'billingcycle', type: 'string', default: 'monthly', description: 'e.g. monthly, quarterly, annually. Comma-separate to match multiple pids.' },
+			{ displayName: 'Billing Cycle', name: 'billingcycle', type: 'string', default: 'monthly', description: 'E.g. monthly, quarterly, annually. Comma-separate to match multiple pids.' },
 			{ displayName: 'Domain', name: 'domain', type: 'string', default: '', description: 'Domain to associate, e.g. example.com' },
-			{ displayName: 'Domain Type', name: 'domaintype', type: 'string', default: '', description: 'register or transfer' },
+			{ displayName: 'Domain Type', name: 'domaintype', type: 'string', default: '', description: 'Register or transfer' },
+			{ displayName: 'Product ID (Pid)', name: 'pid', type: 'string', default: '', description: 'Product ID. For multiple, comma-separate, e.g. "1,2".' },
 			{ displayName: 'Promo Code', name: 'promocode', type: 'string', default: '' },
 		],
 	},
@@ -58,7 +58,7 @@ export const orderFields: INodeProperties[] = [
 		options: [
 			{ displayName: 'Send Registrar', name: 'registrar', type: 'string', default: '', description: 'Auto-submit domain registration to this registrar' },
 			{ displayName: 'Service Username', name: 'serviceusername', type: 'string', default: '' },
-			{ displayName: 'Auto Provision', name: 'autosetup', type: 'boolean', default: false, description: 'Trigger module create on accept' },
+			{ displayName: 'Auto Provision', name: 'autosetup', type: 'boolean', default: false, description: 'Whether to trigger module create on accept' },
 			{ displayName: 'Send Email', name: 'sendemail', type: 'boolean', default: false },
 		],
 	},

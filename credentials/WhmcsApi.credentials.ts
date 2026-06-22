@@ -23,7 +23,7 @@ export class WhmcsApi implements ICredentialType {
 
 	displayName = 'WHMCS API';
 
-	documentationUrl = 'https://developers.whmcs.com/api/authentication/';
+	documentationUrl = 'https://developers.whmcs.com/api/';
 
 	properties: INodeProperties[] = [
 		{

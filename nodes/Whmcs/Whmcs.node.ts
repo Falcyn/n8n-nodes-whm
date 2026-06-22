@@ -5,7 +5,7 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { NodeConnectionType } from 'n8n-workflow';
+import { NodeOperationError } from 'n8n-workflow';
 
 import { whmcsApiRequest, parseCustomParameters } from './GenericFunctions';
 import {
@@ -127,8 +127,8 @@ export class Whmcs implements INodeType {
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Interact with the WHMCS billing & automation API',
 		defaults: { name: 'WHMCS' },
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [{ name: 'whmcsApi', required: true }],
 		properties: [
 			{
@@ -187,7 +187,7 @@ export class Whmcs implements INodeType {
 				} else {
 					action = ACTION_MAP[resource]?.[operation];
 					if (!action) {
-						throw new Error(`Unsupported operation "${operation}" for resource "${resource}".`);
+						throw new NodeOperationError(this.getNode(), `Unsupported operation "${operation}" for resource "${resource}".`);
 					}
 
 					// Collect every simple parameter declared for this operation by walking
