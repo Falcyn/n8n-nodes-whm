@@ -1,0 +1,60 @@
+{
+  "name": "n8n-nodes-whmcs",
+  "version": "1.0.0",
+  "description": "n8n community node for the WHMCS API. Provides native nodes to manage clients, orders, invoices, products/services, support tickets and domains, plus a trigger for inbound WHMCS events.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "whmcs",
+    "billing",
+    "hosting",
+    "automation"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kscomputing/n8n-nodes-whmcs",
+  "author": {
+    "name": "K&S Computing",
+    "email": "support@kscomputing.biz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kscomputing/n8n-nodes-whmcs.git"
+  },
+  "engines": {
+    "node": ">=18.10"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/WhmcsApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Whmcs/Whmcs.node.js",
+      "dist/nodes/Whmcs/WhmcsTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^7.15.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "gulp": "^5.0.0",
+    "n8n-workflow": "*",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.3"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
