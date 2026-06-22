@@ -11,14 +11,17 @@
     "automation"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/kscomputing/n8n-nodes-whmcs",
+  "homepage": "https://github.com/Falcyn/n8n-nodes-whmcs#readme",
   "author": {
     "name": "K&S Computing",
     "email": "support@kscomputing.biz"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kscomputing/n8n-nodes-whmcs.git"
+    "url": "git+https://github.com/Falcyn/n8n-nodes-whmcs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Falcyn/n8n-nodes-whmcs/issues"
   },
   "engines": {
     "node": ">=18.10"
