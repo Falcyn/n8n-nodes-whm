@@ -29,7 +29,7 @@ npm install n8n-nodes-whmcs
 
 ### Build from source
 ```bash
-git clone https://github.com/kscomputing/n8n-nodes-whmcs.git
+git clone https://github.com/Falcyn/n8n-nodes-whmcs.git
 cd n8n-nodes-whmcs
 npm install
 npm run build      # tsc + copies icons into dist/
@@ -74,6 +74,14 @@ identifier/secret and IP/access-key configuration.
 - Resource **Invoice** → Operation **Get Many**
 - Filters → Client ID `42`, Status `Unpaid`
 
+## Disclaimer
+
+This is an unofficial, community-maintained project. It is **not affiliated with,
+endorsed by, or sponsored by WHMCS Limited**. "WHMCS" is a trademark of WHMCS Limited
+and is used here only to describe API compatibility. This package contains **no WHMCS
+source code** — it communicates with WHMCS solely through its public, documented API.
+The software is provided "as is", without warranty of any kind (see [LICENSE](LICENSE.md)).
+
 ## License
 
-[MIT](LICENSE.md) © K&S Computing
+[MIT](LICENSE.md) © Anthony Tuberville

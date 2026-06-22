@@ -2,7 +2,7 @@
 
 **Package:** `n8n-nodes-whmcs`
 **Version:** 1.0.0
-**Author:** K&S Computing
+**Author:** Anthony Tuberville
 **Last updated:** 22 June 2026
 
 ---
