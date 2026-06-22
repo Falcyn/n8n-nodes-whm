@@ -12,7 +12,7 @@ It ships two nodes:
   (new order, invoice paid, ticket opened, …) via a small PHP bridge file.
 
 > Full design, endpoint, authentication and workflow documentation lives in
-> [`WHMCS-n8n-Node-Technical-Documentation.md`](../WHMCS-n8n-Node-Technical-Documentation.md)
+> [`WHMCS-n8n-Node-Technical-Documentation.md`](./WHMCS-n8n-Node-Technical-Documentation.md)
 > (in the parent folder).
 
 ## Installation
