@@ -6,6 +6,18 @@ import type {
 	IWebhookFunctions,
 	IWebhookResponseData,
 } from 'n8n-workflow';
+import { createHash, timingSafeEqual } from 'node:crypto';
+
+/**
+ * Constant-time string comparison. Both inputs are SHA-256 hashed first so the
+ * comparison runs on equal-length buffers (timingSafeEqual throws on length
+ * mismatch) and the length of the real secret is never leaked through timing.
+ */
+function constantTimeEquals(a: string, b: string): boolean {
+	const ha = createHash('sha256').update(a, 'utf8').digest();
+	const hb = createHash('sha256').update(b, 'utf8').digest();
+	return timingSafeEqual(ha, hb);
+}
 
 /**
  * WHMCS Trigger.
@@ -75,7 +87,7 @@ export class WhmcsTrigger implements INodeType {
 				typeOptions: { password: true },
 				default: '',
 				description:
-					'Optional. If set, the PHP bridge must send the same value in the X-WHMCS-Secret header. Requests with a missing or wrong secret are rejected with 401.',
+					'Strongly recommended. If set, the PHP bridge must send the same value in the X-WHMCS-Secret header; requests with a missing or wrong secret are rejected with 401. If left empty the webhook is unauthenticated — anyone who learns the URL can inject events — so only leave it blank when the endpoint is protected by other means.',
 			},
 		],
 	};
@@ -105,7 +117,7 @@ export class WhmcsTrigger implements INodeType {
 		const sharedSecret = this.getNodeParameter('sharedSecret', '') as string;
 		if (sharedSecret) {
 			const provided = (headers['x-whmcs-secret'] as string) ?? '';
-			if (provided !== sharedSecret) {
+			if (!constantTimeEquals(provided, sharedSecret)) {
 				const res = this.getResponseObject();
 				res.status(401).json({ message: 'Invalid WHMCS shared secret' });
 				return { noWebhookResponse: true };

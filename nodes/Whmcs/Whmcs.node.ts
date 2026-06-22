@@ -7,7 +7,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 
-import { whmcsApiRequest, parseCustomParameters } from './GenericFunctions';
+import { whmcsApiRequest, parseCustomParameters, safeMerge } from './GenericFunctions';
 import {
 	clientOperations,
 	clientFields,
@@ -183,7 +183,7 @@ export class Whmcs implements INodeType {
 					action = this.getNodeParameter('action', i) as string;
 					const rawParams = this.getNodeParameter('parameters', i, {}) as IDataObject | string;
 					const parsed = typeof rawParams === 'string' ? JSON.parse(rawParams || '{}') : rawParams;
-					Object.assign(body, parsed as IDataObject);
+					safeMerge(body, parsed as IDataObject);
 				} else {
 					action = ACTION_MAP[resource]?.[operation];
 					if (!action) {
@@ -213,7 +213,7 @@ export class Whmcs implements INodeType {
 					for (const coll of FLATTEN_COLLECTIONS) {
 						const value = this.getNodeParameter(coll, i, {}) as IDataObject;
 						if (value && typeof value === 'object') {
-							Object.assign(body, value);
+							safeMerge(body, value);
 						}
 					}
 

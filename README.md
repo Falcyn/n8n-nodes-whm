@@ -74,6 +74,29 @@ identifier/secret and IP/access-key configuration.
 - Resource **Invoice** → Operation **Get Many**
 - Filters → Client ID `42`, Status `Unpaid`
 
+## Security
+
+This node talks to your billing system and the trigger receives inbound HTTP, so a
+few settings are security-relevant:
+
+- **Always set a Shared Secret on the WHMCS Trigger.** If you leave it blank the
+  webhook is **unauthenticated** — anyone who discovers the URL can inject fake
+  events (e.g. a forged `InvoicePaid`). Set a long random secret in the node and the
+  matching `$sharedSecret` in `whmcs-hook-bridge.php`. The node compares secrets in
+  constant time.
+- **Use HTTPS end to end.** WHMCS hook payloads can contain client and invoice PII.
+  The PHP bridge should point `$n8nWebhookUrl` at an `https://` URL so that data —
+  and the shared secret header — is never sent in clear text.
+- **Keep "Ignore SSL Issues" off.** Only enable it for trusted internal/staging
+  hosts; disabling certificate validation exposes API traffic to interception.
+- **Scope the WHMCS API role.** Generate the API credential against an admin role
+  granted only the permissions your workflows actually use, and restrict by IP under
+  *Setup → General Settings → Security* where possible. Prefer IP allow-listing over
+  the Access Key, which bypasses it.
+- **Credentials** are stored in n8n's encrypted credential store and injected per
+  request; they are never logged by the node, and credential values are redacted from
+  error output.
+
 ## Disclaimer
 
 This is an unofficial, community-maintained project. It is **not affiliated with,

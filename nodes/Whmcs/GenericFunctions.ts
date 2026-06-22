@@ -9,6 +9,32 @@ import type {
 } from 'n8n-workflow';
 import { NodeApiError, NodeOperationError } from 'n8n-workflow';
 
+/** Body keys that carry credentials and must never appear in error output. */
+const SECRET_KEYS = ['secret', 'accesskey', 'identifier', 'password'];
+
+/**
+ * Defence-in-depth: walk a caught error and redact any credential-bearing keys
+ * (the identifier/secret/access key are injected into the request body by the
+ * credential's authenticate(), so a failed request's error could otherwise carry
+ * them into execution logs). n8n also redacts known credential values, so this is
+ * a backstop; it is bounded in depth and never allowed to mask the real error.
+ */
+function redactSecretKeys(value: unknown, depth = 0): void {
+	if (depth > 4 || value === null || typeof value !== 'object') return;
+	const obj = value as Record<string, unknown>;
+	for (const key of Object.keys(obj)) {
+		if (SECRET_KEYS.includes(key.toLowerCase())) {
+			try {
+				obj[key] = '***redacted***';
+			} catch {
+				// read-only property — skip it
+			}
+		} else {
+			redactSecretKeys(obj[key], depth + 1);
+		}
+	}
+}
+
 /**
  * Low-level request helper for the WHMCS external API.
  *
@@ -59,6 +85,11 @@ export async function whmcsApiRequest(
 			options,
 		)) as IDataObject;
 	} catch (error) {
+		try {
+			redactSecretKeys(error);
+		} catch {
+			// never let redaction itself swallow the real error
+		}
 		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}
 
@@ -85,6 +116,23 @@ export async function whmcsApiRequest(
 	return response;
 }
 
+/** Keys that must never be copied from user input into an object (prototype pollution). */
+const DANGEROUS_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
+/**
+ * Copy own enumerable keys from a user-supplied object into a fresh object,
+ * dropping prototype-polluting keys (__proto__, constructor, prototype). Use this
+ * instead of Object.assign whenever the source comes from workflow/user input.
+ */
+export function safeMerge(target: IDataObject, source: IDataObject | undefined): IDataObject {
+	if (!source || typeof source !== 'object') return target;
+	for (const [key, value] of Object.entries(source)) {
+		if (DANGEROUS_KEYS.has(key)) continue;
+		target[key] = value;
+	}
+	return target;
+}
+
 /**
  * Parse the "Additional Fields → Custom Parameters" fixedCollection used across
  * resources, returning a plain key/value object ready to merge into the body.
@@ -94,8 +142,9 @@ export function parseCustomParameters(raw: IDataObject | undefined): IDataObject
 	if (!raw) return out;
 	const params = (raw.parameter as IDataObject[]) ?? [];
 	for (const p of params) {
-		if (p.name !== undefined && p.name !== '') {
-			out[p.name as string] = p.value;
+		const name = p.name as string;
+		if (name !== undefined && name !== '' && !DANGEROUS_KEYS.has(name)) {
+			out[name] = p.value;
 		}
 	}
 	return out;
