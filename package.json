@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-whmcs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "n8n community node for the WHMCS API. Provides native nodes to manage clients, orders, invoices, products/services, support tickets and domains, plus a trigger for inbound WHMCS events.",
   "keywords": [
     "n8n-community-node-package",
