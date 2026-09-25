@@ -1,0 +1,22 @@
+# n8n hook bridge configuration
+# Copy to /etc/n8n-whm-hook-bridge.conf on the WHM server and chmod 600.
+
+# Production URL of the WHM Trigger node (required)
+webhook_url = https://n8n.example.com/webhook/REPLACE-ME/whm
+
+# Shared secret — must match the WHM Trigger node's "Shared Secret" field.
+# Every request is signed with HMAC-SHA256 over the JSON body (X-WHM-Signature).
+secret      = change-me-to-a-long-random-string
+
+# HTTP timeout in seconds. Keep it short: hooks run inline with the WHM action.
+timeout     = 5
+
+# Set to 1 to skip TLS certificate verification (only for trusted internal n8n hosts)
+insecure    = 0
+
+# Keys whose values are replaced with ***redacted*** before the event leaves the
+# server. Account-creation and password-change hooks carry plaintext passwords.
+redact      = pass,password,passwd,pass1,pass2,key,db_pass,rawpass,newpass,oldpass
+
+# Delivery failures are appended here (set empty to disable)
+log         = /usr/local/cpanel/logs/n8n-whm-hook-bridge.log

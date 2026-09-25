@@ -1,12 +1,13 @@
 {
-  "name": "n8n-nodes-whmcs",
-  "version": "1.0.1",
-  "description": "n8n community node for the WHMCS API. Provides native nodes to manage clients, orders, invoices, products/services, support tickets and domains, plus a trigger for inbound WHMCS events.",
+  "name": "n8n-nodes-whm",
+  "version": "1.0.0",
+  "description": "n8n community node for cPanel & WHM (WebHost Manager). Manage accounts, packages, DNS zones, SSL, resellers, services, backups and cPanel-level email, databases, domains and FTP through the WHM API, plus a trigger for WHM hook events.",
   "keywords": [
     "n8n-community-node-package",
     "n8n",
-    "whmcs",
-    "billing",
+    "whm",
+    "cpanel",
+    "webhost-manager",
     "hosting",
     "automation"
   ],
@@ -42,11 +43,11 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/WhmcsApi.credentials.js"
+      "dist/credentials/WhmApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Whmcs/Whmcs.node.js",
-      "dist/nodes/Whmcs/WhmcsTrigger.node.js"
+      "dist/nodes/Whm/Whm.node.js",
+      "dist/nodes/Whm/WhmTrigger.node.js"
     ]
   },
   "devDependencies": {
