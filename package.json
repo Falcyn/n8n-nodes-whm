@@ -12,17 +12,17 @@
     "automation"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Falcyn/n8n-nodes-whmcs#readme",
+  "homepage": "https://github.com/Falcyn/n8n-nodes-whm#readme",
   "author": {
     "name": "Anthony Tuberville",
     "email": "4618821+Falcyn@users.noreply.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Falcyn/n8n-nodes-whmcs.git"
+    "url": "git+https://github.com/Falcyn/n8n-nodes-whm.git"
   },
   "bugs": {
-    "url": "https://github.com/Falcyn/n8n-nodes-whmcs/issues"
+    "url": "https://github.com/Falcyn/n8n-nodes-whm/issues"
   },
   "engines": {
     "node": ">=18.10"

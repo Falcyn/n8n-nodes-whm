@@ -32,8 +32,8 @@ npm install n8n-nodes-whm
 
 ### Build from source
 ```bash
-git clone https://github.com/Falcyn/n8n-nodes-whmcs.git
-cd n8n-nodes-whmcs
+git clone https://github.com/Falcyn/n8n-nodes-whm.git
+cd n8n-nodes-whm
 npm install
 npm run build      # tsc + copies icons into dist/
 npm run lint       # eslint with eslint-plugin-n8n-nodes-base
